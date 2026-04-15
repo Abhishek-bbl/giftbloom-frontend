@@ -545,3 +545,23 @@
     flex-direction: column;
   }
 }
+
+.copy-icon {
+  margin-left: 8px;
+  opacity: 0.6;
+}
+
+.order-id-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: #fafafa;
+  border: 1px solid #f0f0f0;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 13px;
+  color: #888;
+  transition: background 0.3s;
+}
+
+.order-id-badge:hover { background-color: #FFF0F5; }
+.order-id-badge strong { color: #1a1a1a; font-weight: 700; letter-spacing: 1px; margin-left: 6px; }

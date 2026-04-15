@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiShoppingCart, FiHeart, FiBell, FiMenu, FiX, FiUser, FiSearch, FiLogOut, FiPackage } from 'react-icons/fi';
 import { products } from '../data/products';
+import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,19 +14,13 @@ function Navbar() {
   const userMenuRef = useRef(null);
   const navigate = useNavigate();
 
-  const token = localStorage.getItem('giftbloom_token');
-  const userStr = localStorage.getItem('giftbloom_user');
-  const user = userStr ? JSON.parse(userStr) : null;
-  const isLoggedIn = !!token && !!user;
+ const { user, isLoggedIn, logout } = useAuth();
 
-  const handleLogout = () => {
-    localStorage.removeItem('giftbloom_token');
-    localStorage.removeItem('giftbloom_user');
-    localStorage.removeItem('giftbloom_cart');
-    setShowUserMenu(false);
-    navigate('/');
-    window.location.reload();
-  };
+const handleLogout = () => {
+  logout();
+  setShowUserMenu(false);
+  navigate('/');
+};
 
   const handleSearch = (query) => {
     setSearchQuery(query);

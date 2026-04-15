@@ -15,6 +15,7 @@ import Cart from './pages/Cart';
 import CardEditor from './pages/CardEditor';
 import './styles/Navbar.css';
 import './App.css';
+import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/card-editor/:id" element={<CardEditor />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </div>
     </Router>

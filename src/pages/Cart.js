@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Cart.css';
 import { FiTrash2, FiShoppingBag, FiArrowRight } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../api';
+import api from '../api';
 
 function Cart() {
   const navigate = useNavigate();
@@ -30,9 +30,31 @@ function Cart() {
           })));
         }
       } else {
-        const localCart = JSON.parse(localStorage.getItem('giftbloom_cart') || '[]');
-        setCartItems(localCart);
+  const localCart = JSON.parse(localStorage.getItem('giftbloom_cart') || '[]');
+
+  const updatedCart = await Promise.all(
+    localCart.map(async (item) => {
+      try {
+        const res = await api.get(`/products/${item.product_id}`);
+
+        return {
+          cartId: item.cartId,
+          id: item.product_id,
+          name: res.data.product.name,
+          price: parseFloat(res.data.product.price),
+          image: res.data.product.image,
+          quantity: item.quantity,
+          personalization: item.personalization || {},
+        };
+      } catch (err) {
+        console.error("Product fetch failed", err);
+        return null;
       }
+    })
+  );
+
+  setCartItems(updatedCart.filter(Boolean));
+}
     } catch (e) {
       console.error('Cart load error:', e);
       const localCart = JSON.parse(localStorage.getItem('giftbloom_cart') || '[]');

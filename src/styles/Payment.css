@@ -906,3 +906,106 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Back button */
+.back-btn-payment {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: #888;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  padding: 0;
+  margin-bottom: 20px;
+  transition: color 0.3s;
+}
+
+.back-btn-payment:hover { color: #1a1a1a; }
+
+/* UPI apps */
+.upi-apps-grid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.upi-app-pill {
+  padding: 7px 16px;
+  border: 1.5px solid #e8e8e8;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #555;
+  background-color: #fafafa;
+}
+
+/* Error */
+.payment-input-wrap.error { border-color: #e24b4a; }
+
+.payment-error-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #FCEBEB;
+  border: 1px solid #f7c1c1;
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #A32D2D;
+  font-weight: 500;
+}
+
+.req { color: #e24b4a; margin-left: 2px; }
+
+/* Checkout progress (reuse from delivery) */
+.checkout-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.checkout-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 60px;
+}
+
+.cp-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #aaa;
+  background-color: #fff;
+}
+
+.checkout-step.active .cp-dot { background-color: #1a1a1a; border-color: #1a1a1a; color: #fff; }
+.checkout-step.done .cp-dot { background-color: #e8a0b4; border-color: #e8a0b4; color: #fff; }
+.checkout-step span { font-size: 11px; color: #aaa; font-weight: 500; }
+.checkout-step.active span { color: #1a1a1a; font-weight: 600; }
+.checkout-step.done span { color: #e8a0b4; }
+
+.checkout-line {
+  flex: 1;
+  height: 1.5px;
+  background-color: #e0e0e0;
+  margin-bottom: 14px;
+  max-width: 80px;
+}
+
+.checkout-line.done { background-color: #e8a0b4; }
+

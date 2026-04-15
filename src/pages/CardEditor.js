@@ -3,7 +3,7 @@ import '../styles/CardEditor.css';
 import { FiX, FiCheck, FiArrowLeft, FiShoppingCart, FiUpload } from 'react-icons/fi';
 import { useParams, useNavigate } from 'react-router-dom';
 import { products } from '../data/products';
-import { api } from '../api';
+import api from '../api';
 
 const cardDesigns = [
   {
@@ -179,12 +179,16 @@ function CardEditor() {
 
   const handleAddToCart = async () => {
     const isLoggedIn = !!localStorage.getItem('giftbloom_token');
-    const cartItem = {
-      ...product,
-      quantity: 1,
-      personalization: { ...cardProps, designId: selectedDesign.id, designName: selectedDesign.name },
-      cartId: Date.now(),
-    };
+const cartItem = {
+  product_id: product.id,
+  quantity: 1,
+  personalization: {
+    ...cardProps,
+    designId: selectedDesign.id,
+    designName: selectedDesign.name
+  },
+  cartId: Date.now()
+};
     if (isLoggedIn) {
       await api.addToCart({ product_id: product.id, quantity: 1, personalization: cartItem.personalization });
     } else {
@@ -198,12 +202,16 @@ function CardEditor() {
 
   const handleBuyNow = async () => {
     const isLoggedIn = !!localStorage.getItem('giftbloom_token');
-    const cartItem = {
-      ...product,
-      quantity: 1,
-      personalization: { ...cardProps, designId: selectedDesign.id, designName: selectedDesign.name },
-      cartId: Date.now(),
-    };
+const cartItem = {
+  product_id: product.id,
+  quantity: 1,
+  personalization: {
+    ...cardProps,
+    designId: selectedDesign.id,
+    designName: selectedDesign.name
+  },
+  cartId: Date.now()
+};
     if (isLoggedIn) {
       await api.addToCart({ product_id: product.id, quantity: 1, personalization: cartItem.personalization });
     } else {

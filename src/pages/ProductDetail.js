@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/ProductDetail.css';
 import { FiHeart, FiShare2, FiStar, FiTruck, FiShield, FiArrowLeft, FiShoppingCart, FiCheck, FiUpload, FiX } from 'react-icons/fi';
 import { products, categories } from '../data/products';
-import { api } from '../api';
+import api from '../api';
 
 function ProductDetail() {
   const { id } = useParams();
@@ -52,7 +52,17 @@ const handleAddToCart = async () => {
     }
   } else {
     const cart = JSON.parse(localStorage.getItem('giftbloom_cart') || '[]');
-    const item = { ...product, quantity, recipientName, senderName, message, photo, cartId: Date.now() };
+    const item = {
+  product_id: product.id,
+  quantity,
+  personalization: {
+    recipientName,
+    senderName,
+    message,
+    photo
+  },
+  cartId: Date.now()
+};
     cart.push(item);
     localStorage.setItem('giftbloom_cart', JSON.stringify(cart));
     setAddedToCart(true);
@@ -62,7 +72,17 @@ const handleAddToCart = async () => {
 
   const handleBuyNow = () => {
     const cart = JSON.parse(localStorage.getItem('giftbloom_cart') || '[]');
-    const item = { ...product, quantity, recipientName, senderName, message, photo, cartId: Date.now() };
+    const item = {
+  product_id: product.id,
+  quantity,
+  personalization: {
+    recipientName,
+    senderName,
+    message,
+    photo
+  },
+  cartId: Date.now()
+};
     cart.push(item);
     localStorage.setItem('giftbloom_cart', JSON.stringify(cart));
     const isLoggedIn = localStorage.getItem('giftbloom_user');
